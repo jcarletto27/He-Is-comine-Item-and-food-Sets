@@ -1,12 +1,15 @@
-# He is Coming — active itemsets in the installed build
+# He is Coming — active itemsets and weapon combinations in the installed build
 
-This catalog covers the current playable itemsets represented by the installed Patch 16 / 0.9.45-era data. There are **31 unique active itemsets**:
+This catalog covers the current playable itemsets and the weapon modifications represented by the installed Patch 16 / 0.9.45-era data. There are **31 unique active itemsets** and **10 active weapon modifications**:
 
 - 13 Woodland sets
 - 16 Swampland rows, one of which is the shared **Highborn** set
 - 3 Kingmaker-only cross-region sets
+- 10 weapon modifications stored under `set_*` IDs
 
 So the area lists contain 32 rows in total, but only 31 unique definitions because `set_24` (Highborn) appears in both Woodland and Swampland.
+
+Weapon modifications use the same internal `set_*` namespace, but work differently: equipping either component weapon and then picking up the other replaces them with the resulting modified weapon. They are included below because omitting them hid valid combinations such as **Pacifist Staff + Silverscale Trident**.
 
 ## How the data was identified
 
@@ -64,6 +67,23 @@ These combine one Woodland-side component with one Swampland-side component, so 
 | `set_49` | Ironstone Arrowhead | Ironstone Spear + Ironstone Sandals | **On Hit:** Gain 1 armor. |
 | `set_125` | Woodcutter's Regret | Woodcutter's Axe + Woodcutter's Boots | Applies **-5 base max health**. The component items reward empty equipment slots, so the set's penalty is part of its tradeoff. |
 
+## Weapon modifications encoded as `set_*`
+
+These are playable weapon combinations, not persistent multi-item set bonuses. With either component equipped, pick up the other and accept the modification prompt; the two weapons become the result shown below.
+
+| ID | Resulting weapon | Required weapons | Region | Base stats | Function |
+|---:|---|---|---|---|---|
+| `set_98` | **Bloodlord's Whip** | Bloodlord's Axe + Leatherskin Whip | Swampland | **5 max health, 4 attack** | **Battle Start:** Gain 5 max health and steal 5 health from the enemy. |
+| `set_71` | **Boom Spear** | Boom Stick + Razorthorn Spear | Woodland | **1 attack** | **On Hit:** Gain 2 thorns and deal 2 damage. |
+| `set_74` | **Brittlebark Blade** | Brittlebark Club + Brittlebark Bow | Woodland | **12 attack** | **On Hit:** Lose 2 attack. |
+| `set_119` | **Frozen Spork** | Glacial Spoon + Silver Fork | Woodland | **1 attack** | **On Hit:** Trigger a random common-rarity food item and give the enemy 1 freeze. |
+| `set_97` | **Galestrike Rapier** | Gale Staff + Swiftstrike Rapier | Woodland + Swampland | **2 attack, 6 speed** | **Battle Start:** If you have more speed than the enemy, gain 3 additional strikes. **On Hit:** Lose 1 speed. |
+| `set_93` | **Liferoot Dagger** | Liferoot Staff + Bloodmoon Dagger | Woodland + Swampland | **2 attack** | **Wounded:** Take 2 damage, then gain 3 regeneration and 5 attack. The result can substitute for Bloodmoon Dagger in **Bloodmoon Strike**. |
+| `set_95` | **Pacifist Trident** | Pacifist Staff + Silverscale Trident | Swampland | **0 attack** | **On Hit:** Give the enemy 1 riptide, gain 1 armor, and restore 1 health. |
+| `set_69` | **Perfect Iceblade** | Melting Iceblade + Frozen Iceblade | Woodland + Swampland | **7 attack** | You cannot gain freeze. |
+| `set_99` | **Spear of the Hero** | Evergrowth Spear + Sword of the Hero | Woodland | **3 attack** | Every other turn, gain 1 attack and restore 1 health. The result can substitute for Sword of the Hero in **Hero's Return**. |
+| `set_96` | **Stonesnake Sword** | Stoneslab Sword + Serpent Dagger | Woodland + Swampland | **2 attack** | **On Hit:** Give the enemy 2 poison and gain 2 armor. |
+
 ## Serialized but no longer active
 
 These definitions are still visible in the installed assets, but they are not in the current working itemset lists and should not be counted as playable sets.
@@ -78,7 +98,7 @@ These definitions are still visible in the installed assets, but they are not in
 
 ## Notes on misleading remnants
 
-- A raw search finds many more `set_*` objects than the 31 above. Some are weapon modifications (for example Frozen Spork), removed content, developer placeholders (`set_991` through `set_999`), or unreleased area content.
+- A raw search finds more `set_*` objects than the 41 playable entries above. The 10 active weapon modifications are now included explicitly; the remaining excess definitions are removed content, developer placeholders (`set_991` through `set_999`), or unreleased area content.
 - The English localization hint for `set_125` still says **Woodcutter's Glove**, but the current playable relation is **Woodcutter's Boots**. The newer item and current itemset list agree on Boots; the hint is stale.
 - Older online guides are out of date for several sets. In particular, the installed data has Deadly Toxin at 5 acid, Marshlight Aria at 3 Symphony triggers, Twilight Crest doubling Crest triggers, and the Patch 16 sets listed above.
 
@@ -87,4 +107,5 @@ These definitions are still visible in the installed assets, but they are not in
 - https://wiki.hoodedhorse.com/He_is_Coming/Woodland_itemsets
 - https://wiki.hoodedhorse.com/He_is_Coming/Swampland_itemsets
 - https://wiki.hoodedhorse.com/He_is_Coming/Kingmaker_itemsets
+- https://wiki.hoodedhorse.com/He_is_Coming/Weapon_modifications
 - https://wiki.hoodedhorse.com/He_is_Coming/Patches
